@@ -42,7 +42,3 @@ export const config = {
   api: {bodyParser: false,} 
                   
 }
-
-
-//account id: acct_1NUgIaHRZ5z5PDO9
-//signing secret the same as endpointSecret: whsec_a5ef1bb4e884cef3c20c970ca1f6e9bec4049510e3b6ceda3c38a9af7efdd238
