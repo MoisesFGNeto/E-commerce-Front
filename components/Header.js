@@ -17,17 +17,17 @@ const Logo = styled(Link)`
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 10px 0;
-  @media screen and (min-width: 768px) {
-    padding: 20px 0;
-  }
-
+  padding: 20px 0;
 `;
-const StyledNav = styled.nav`
-  ${props => props.mobileactive ? `
+const StyledNav = styled.nav.withConfig({
+  shouldForwardProp: prop => prop !== 'mobileNavActive'
+})`
+  ${props => props.mobileNavActive ? `
     display: block;
+    mobileactive: "true";
   ` : `
     display: none;
+    mobileactive: "false";
   `}
   gap: 15px;
   position: fixed;
@@ -53,10 +53,9 @@ const NavLink = styled(Link)`
   }
 `;
 const NavButton = styled.button`
-  margin: -7px 0;
   background-color: transparent;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   border:0;
   color: white;
   cursor: pointer;
@@ -75,7 +74,7 @@ export default function Header() {
       <Center>
         <Wrapper>
           <Logo href={'/'}>Ecommerce</Logo>
-          <StyledNav mobileactive={mobileNavActive}>
+          <StyledNav mobileNavActive={mobileNavActive}>
             <NavLink href={'/'}>Home</NavLink>
             <NavLink href={'/products'}>All products</NavLink>
             <NavLink href={'/categories'}>Categories</NavLink>

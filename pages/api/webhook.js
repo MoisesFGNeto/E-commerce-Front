@@ -18,17 +18,23 @@ export default async function handler(req, res) {
     res.status(400).send(`Webhook Error: ${err.message}`);
     return;
   }
-
+  console.log(`Received event: ${event.type}`);
   // Handle the event
   switch (event.type) {
     case 'checkout.session.completed':
       const data = event.data.object;
       const orderId = data.metadata.orderId;
       const paid = data.payment_status === 'paid';
+      console.log(`Received payment for order ${orderId}: ${paid}`);
         if (orderId && paid) {
-          await Order.findByIdAndUpdate(orderId, {
-            paid:true
-          })
+          try {
+            const result = await Order.findByIdAndUpdate(orderId, {
+              paid: true
+            });
+            console.log(`Updated order ${orderId}: ${result}`);
+          } catch (err) {
+            console.error(`Error updating order ${orderId}: ${err.message}`);
+          }
         }
       break;
     default:

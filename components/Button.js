@@ -59,8 +59,8 @@ const StyledButton = styled.button`
   ${ButtonStyle}
 `;
 
-export default function Button({children,...rest}) {
+export default function Button({children,block,black,...rest}) {
   return (
-    <StyledButton {...rest}>{children}</StyledButton>
+    <StyledButton block={block ? "true" : undefined} black={black ? "true" : undefined}{...rest}>{children}</StyledButton>
   );
 }
