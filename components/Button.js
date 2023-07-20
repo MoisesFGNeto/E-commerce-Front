@@ -36,7 +36,7 @@ ${props => props.black && props.outline && css`
   color: #000;
   border: 1px solid #000;
 `}
-${props => props.primary && !props.outline && css `
+${props => props && !props.outline && css `
 background-color: ${primary};
 border: 1px solid ${primary};
 color: #fff;
