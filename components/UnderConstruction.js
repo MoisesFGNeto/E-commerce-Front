@@ -22,7 +22,6 @@ const MarginWhiteBox = styled.div`
 margin-top: 30px;
 `;
 
-
 export default function UnderConstruction() {
   return (
     <>

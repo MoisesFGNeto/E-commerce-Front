@@ -8,16 +8,11 @@ const Title = styled.h2`
   font-weight: 500;
 `;
 
-const MarginBottom = styled.div`
-  margin-bottom: 70px;
-`;
-
 export default function NewProducts({ products }) {
   return (
     <Center>
       <Title>New Arrivals</Title>
       <ProductsGrid products={products}/>
-      <MarginBottom/>
     </Center>
     
   );

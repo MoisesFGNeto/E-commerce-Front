@@ -2,11 +2,12 @@ import styled from 'styled-components';
 
 const StyledFooter = styled.footer`
   background-color:#222;
-  height: 60px;
+  height: 45px;
   width: 100%;
   display: flex;
   align-items: center;
   bottom: 0;
+  position: fixed;
 `;
 
 const RightsStyled = styled.p`
@@ -18,10 +19,10 @@ const RightsStyled = styled.p`
 
 export default function Footer() {
   return(
-      <footer>
-        <StyledFooter>
-          <RightsStyled>2023 Developed by Moisés. All rights reserved.</RightsStyled>
-        </StyledFooter>
-      </footer>
+      <>
+      <StyledFooter>
+        <RightsStyled>2023 Developed by Moisés. All rights reserved.</RightsStyled>
+      </StyledFooter>
+      </>
   )
 }
