@@ -1,17 +1,12 @@
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 const StyledFooter = styled.footer`
   background-color:#222;
-  height: 50px;
+  height: 60px;
   width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
   display: flex;
   align-items: center;
+  bottom: 0;
 `;
 
 const RightsStyled = styled.p`
