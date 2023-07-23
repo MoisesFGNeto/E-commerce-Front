@@ -53,6 +53,10 @@ ${props => props.size === 'l' && css`
     height: 20px;
   }
 `}
+&:hover {
+  background-color: #fff;
+  color: ${primary};
+}
 `;
 
 const StyledButton = styled.button`
