@@ -18,7 +18,11 @@ const ColumnsWrapper = styled.div`
   gap: 40px;
   margin-top: 40px;
 `;
-
+const PaddingBottom = styled.div`
+@media screen and (max-width: 768px) {
+  padding-bottom : 80px; 
+}
+`;
 const Box = styled.div`
   background-color: #fff;
   border-radius: 10px;
@@ -65,7 +69,10 @@ const QuantityLabel = styled.span`
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column-reverse;
+  align-items: center;
+  gap: 2px;
   width: 35px;
+  margin-left: 15px;
   @media screen and (min-width: 768px) {
     display: inline; 
   }
@@ -74,6 +81,12 @@ const ButtonContainer = styled.div`
 const CityHolder = styled.div`
   display:flex;
   gap: 5px;
+`;
+
+const MarginRight = styled.th`
+  @media screen and (max-width: 768px) {
+    padding-right: 35px;
+  }
 `;
 
 export default function CartPage() {
@@ -156,7 +169,7 @@ export default function CartPage() {
                 <thead>
                   <tr>
                     <th>Product</th>
-                    <th>Quantity</th>
+                    <th><MarginRight>Quantity</MarginRight></th>
                     <th>Price</th>
                   </tr>
                 </thead>
@@ -172,12 +185,18 @@ export default function CartPage() {
                       <td>
                         <ButtonContainer>
                           <Button
-                            onClick={() => lessOfThisProduct(product._id)}>-</Button>
+                            onClick={() => 
+                            lessOfThisProduct(product._id)}>
+                            -
+                          </Button>
                           <QuantityLabel>
                             {cartProducts.filter(id => id === product._id).length}
                           </QuantityLabel>
                           <Button
-                           onClick={() => moreOfThisProduct(product._id)}>+</Button>
+                           onClick={() => 
+                           moreOfThisProduct(product._id)}>
+                            +
+                          </Button>
                         </ButtonContainer>                      
                       </td>
                       <td>
@@ -194,7 +213,7 @@ export default function CartPage() {
               </Table>
             )}
           </Box>
-          {!!cartProducts?.length && (
+          {!!cartProducts?.length && ( 
             <Box>
               <h2>Order information</h2>
               <Input type="text"
@@ -238,6 +257,7 @@ export default function CartPage() {
           )}
         </ColumnsWrapper>
       </Center>
+      <PaddingBottom/>
       <Footer/>
     </>
   );
