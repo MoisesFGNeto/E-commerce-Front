@@ -32,6 +32,12 @@ const Price = styled.span`
   font-size: 1.4em;
 `;
 
+const Padding = styled.div`
+@media screen and (max-width: 768px) {
+  padding-bottom: 40px;
+}
+`;
+
 export default function ProductPage({product}){
   const {addProduct} = useContext(CartContext);
   return (
@@ -42,7 +48,7 @@ export default function ProductPage({product}){
           <WhiteBox> 
             <ProductImages images={product.images}/>
           </WhiteBox>
-          <div>
+          <Padding>
             <Title>{product.title}</Title>
             <p>{product.description}</p>
             <PriceRow>
@@ -57,7 +63,7 @@ export default function ProductPage({product}){
                 </Button>
               </div>
             </PriceRow>
-          </div>
+          </Padding>
         </ColWrapper>
       </Center>   
       <Footer/>     
