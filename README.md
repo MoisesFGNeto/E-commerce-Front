@@ -1,38 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# E-commerce front
+**Note:** This project is currently a work in progress and not yet completed. However, it provides an overview of its functionalities.
 
-## Getting Started
+## Description
+The E-commerce Frontend project is being developed using cutting-edge technologies, including Next.js for a seamless user experience, Styled Components for modular and maintainable styling, MongoDB as the database for efficient data management, and Vercel for reliable and scalable deployment.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+**User-Friendly Shopping:** Our platform offers a user-friendly interface, allowing customers to easily browse and purchase products online through a secure payment system powered by Stripe.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Responsive Cart Management:** Customers can effortlessly add or remove products from their cart, making the shopping experience more convenient and enjoyable.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+**Integration with Admin Panel:** This frontend seamlessly communicates with the admin panel, streamlining the order management process. Each purchase made by users will be reflected in the admin panel's orders section.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+**Stripe Webhook:** The application utilizes a Stripe webhook to receive real-time updates about user payments. When a user completes a purchase, Stripe sends a webhook event to our backend server, bringing essential information about the payment, such as its status and details. This allows us to update the admin panel with the appropriate payment status, ensuring that all orders are accurately tracked and managed.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Instructions for Testing
+To simulate a purchase and test the payment functionality, you can use the following test card details:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+**Card Number:** 4242 4242 4242 4242
 
-## Learn More
+**Expiration Date (MM/YY):** Use any future date
 
-To learn more about Next.js, take a look at the following resources:
+**CVC:** Use any 3-digit number of your choice
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Please note that this is a test environment, and no real transactions will occur. Stripe's test card information allows you to safely experience the payment process without using actual payment credentials.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+**Caution:** Do not use real payment information while testing. Use only the provided test card details to ensure a secure testing experience.
