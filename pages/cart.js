@@ -89,6 +89,12 @@ const MarginRight = styled.th`
   }
 `;
 
+const PadingBottom = styled.div`
+  @media screen and (min-width: 768px) {
+  padding-bottom: 40px;
+  }
+`;
+
 export default function CartPage() {
   const {cartProducts,addProduct,removeProduct,clearCart} = useContext(CartContext);
   const [products,setProducts] = useState([]);
@@ -210,6 +216,7 @@ export default function CartPage() {
                     <td>${total}</td>
                   </tr>
                 </tbody>
+                <PadingBottom/>
               </Table>
             )}
           </Box>
