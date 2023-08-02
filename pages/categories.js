@@ -27,6 +27,13 @@ const CategoryTitle = styled.div`
   a{
     color: #555;
   }
+  @media screen and (max-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+    h2{
+      font-size: 1.3em;
+    }
+  }
 `;
 
 const CategoryWrapper = styled.div`

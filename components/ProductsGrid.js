@@ -6,6 +6,7 @@ const StyledProductsGrid = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   padding-bottom: 70px;
+  margin-top: 10px;
   @media screen and (min-width: 768px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }

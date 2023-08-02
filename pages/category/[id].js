@@ -12,8 +12,11 @@ const CategoryHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  h1{
-    font-size: 1.5em;
+  
+  @media screen and (max-width: 768px) {
+    h1{
+      font-size: 1.0em;
+    }
   }
 `;
 
@@ -43,6 +46,9 @@ const Filter = styled.div`
   }
   @media screen and (max-width: 768px) {
     display: block;
+    width: 135px;
+    height: 20px;
+    font-size: 0.7em;
   }
 `;
 
