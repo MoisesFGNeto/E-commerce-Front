@@ -15,7 +15,7 @@ const CategoryHeader = styled.div`
   
   @media screen and (max-width: 768px) {
     h1{
-      font-size: 1.0em;
+      font-size: 0.9em;
     }
   }
 `;
@@ -46,9 +46,9 @@ const Filter = styled.div`
   }
   @media screen and (max-width: 768px) {
     display: block;
-    width: 135px;
-    height: 20px;
-    font-size: 0.7em;
+    width: 110px;
+    height: 15px;
+    font-size: 0.5em;
   }
 `;
 
