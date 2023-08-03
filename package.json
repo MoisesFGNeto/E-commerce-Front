@@ -20,7 +20,6 @@
     "next": "13.4.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-flying-item": "^1.1.2",
     "react-spinners": "^0.13.8",
     "stripe": "^12.13.0",
     "styled-components": "^6.0.1"
