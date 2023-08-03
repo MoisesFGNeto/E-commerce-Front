@@ -29,6 +29,9 @@ const Title = styled(Link)`
   color: inherit;
   text-decoration: none;
   margin:0;
+  @media screen and (max-width: 300px) {
+    font-size: 0.7em;
+  }
 `;
 
 const ProductInfoBox = styled.div`
@@ -40,6 +43,7 @@ display: block;
 margin-top: 2px;
 align-items: center;
 justify-content: space-between;
+
 @media screen and (min-width: 768px) {
   display: flex;
   gap: 5px;
@@ -48,12 +52,17 @@ justify-content: space-between;
 
 const Price = styled.div`
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 600;
   text-align: right;
+  padding-bottom: 2px;
   @media screen and (min-width: 768px) {
     font-size: 1.2rem; 
     font-weight: 600;
     text-align: left;
+  }
+  @media screen and (max-width: 300px) {
+    font-size: 0.7em;
+    font-weight: 700;
   }
 `;
 
@@ -70,8 +79,12 @@ export default function ProductBox({_id,title,price,images}) {
       <ProductInfoBox>
         <Title href={url}>{title}</Title>
         <PriceRow>
-          <Price>${price}</Price>
-          <Button onClick={() => addProduct(_id)} block primary={1} outline={1}>Add to cart</Button>
+          <Price>
+            ${price}
+          </Price>
+          <Button onClick={() => addProduct(_id)} block primary={1} outline={1}>
+            Add to cart
+          </Button>
         </PriceRow>
       </ProductInfoBox>
     </ProductWrapper>

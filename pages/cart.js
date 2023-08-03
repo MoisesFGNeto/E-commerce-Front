@@ -17,6 +17,20 @@ const ColumnsWrapper = styled.div`
   }
   gap: 40px;
   margin-top: 40px;
+  table thead tr th:nth-child(3),
+  table tbody tr td:nth-child(3),
+  table tbody tr.subtotal td:nth-child(2){
+    text-align: right;
+  }
+  table tr.subtotal td{
+    padding: 15px 0;
+  }
+  table tbody tr.subtotal td:nth-child(2){
+    font-size: 1.4rem;
+  }
+  tr.total td{
+    font-weight: bold;
+  }
 `;
 const PaddingBottom = styled.div`
 @media screen and (max-width: 768px) {
@@ -83,17 +97,6 @@ const CityHolder = styled.div`
   gap: 5px;
 `;
 
-const MarginRight = styled.th`
-  @media screen and (max-width: 768px) {
-    padding-right: 35px;
-  }
-`;
-
-const PadingBottom = styled.div`
-  @media screen and (min-width: 768px) {
-  padding-bottom: 40px;
-  }
-`;
 
 export default function CartPage() {
   const {cartProducts,addProduct,removeProduct,clearCart} = useContext(CartContext);
@@ -175,7 +178,7 @@ export default function CartPage() {
                 <thead>
                   <tr>
                     <th>Product</th>
-                    <th><MarginRight>Quantity</MarginRight></th>
+                    <th>Quantity</th>
                     <th>Price</th>
                   </tr>
                 </thead>
@@ -216,7 +219,7 @@ export default function CartPage() {
                     <td>${total}</td>
                   </tr>
                 </tbody>
-                <PadingBottom/>
+                <PaddingBottom/>
               </Table>
             )}
           </Box>

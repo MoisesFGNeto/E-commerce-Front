@@ -4,15 +4,20 @@ import Center from "@/components/Center";
 import {useContext, useState} from "react";
 import {CartContext} from "@/components/CartContext";
 import BarsIcon from "@/components/icons/Bars";
+import SearchIcon from "./icons/SearchIcon";
 
 const StyledHeader = styled.header`
   background-color: #222;
+  position:sticky;
+  top:0;
+  z-index:10;
 `;
 const Logo = styled(Link)`
   color:#fff;
   text-decoration:none;
   position: relative;
   z-index: 3;
+  align-self: center;
 `;
 const Wrapper = styled.div`
   display: flex;
@@ -32,24 +37,35 @@ const StyledNav = styled.nav.withConfig({
   gap: 15px;
   position: fixed;
   top: 0;
-  bottom: 0;
-  left: 0;
+  bottom: auto;
+  left: auto;
+  border-radius: 5px;
   right: 0;
   padding: 70px 20px 20px;
   background-color: #222;
+  align-self: center;
   @media screen and (min-width: 768px) {
     display: flex;
     position: static;
     padding: 0;
   }
+
 `;
 const NavLink = styled(Link)`
   display: block;
   color:#aaa;
   text-decoration:none;
+  min-width: 30px;
   padding: 10px 0;
+  svg{
+    height: 20px;
+  }
   @media screen and (min-width: 768px) {
     padding:0;
+  }
+  &:hover{
+    color:#fff;
+    background-color: #444;
   }
 `;
 const NavButton = styled.button`
@@ -63,6 +79,21 @@ const NavButton = styled.button`
   z-index: 3;
   @media screen and (min-width: 768px) {
     display: none;
+  }
+`;
+const SideIcons = styled.div`
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  a{
+    display: inline-block;
+    min-width: 20px;
+    color: #fff;
+    svg{
+      width: 24px;
+      height: 24px;
+      margin-top: 5px;
+    }
   }
 `;
 
@@ -81,9 +112,12 @@ export default function Header() {
             <NavLink href={'/account'}>Account</NavLink>
             <NavLink href={'/cart'}>Cart ({cartProducts.length})</NavLink>
           </StyledNav>
-          <NavButton onClick={() => setMobileNavActive(prev => !prev)}>
-            <BarsIcon />
-          </NavButton>
+          <SideIcons>
+            <Link href={'/search'}><SearchIcon /></Link>
+            <NavButton onClick={() => setMobileNavActive(prev => !prev)}>
+              <BarsIcon />
+            </NavButton>
+          </SideIcons>
         </Wrapper>
       </Center>
     </StyledHeader>

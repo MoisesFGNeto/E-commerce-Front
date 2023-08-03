@@ -15,19 +15,24 @@ const CategoryHeader = styled.div`
   
   @media screen and (max-width: 768px) {
     h1{
-      font-size: 0.9em;
+      font-size: 1.3em;
     }
+  }
+  @media screen and (max-width: 300px) {
+   h1{
+    font-size: 0.8em;
+   }
   }
 `;
 
 const FilterWrapper = styled.div`
   display: flex;
   gap: 15px;
+  padding: 15px 0;
   @media screen and (max-width: 768px) {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    margin: 15px 5px;
   }
   `;
 
