@@ -27,8 +27,7 @@ export default function SeachPage(){
   const [phrase,setPhrase] = useState('');
   const [products,setProducts] = useState([]);
   const [isLoading,setIsLoading] = useState(false);
-  const debouncedSearch = useCallback(
-    debounce(searchProducts,500), []);
+  const debouncedSearch = useCallback(debounce(searchProducts,500), []);
 
   useEffect(()=>{
     if(phrase.length>0){
@@ -55,11 +54,11 @@ export default function SeachPage(){
             autoFocus
             value={phrase}
             onChange={e=>setPhrase(e.target.value)} // explain me this line 
-            placeholder="Search for products..." 
+            placeholder='Search for products...' 
           />
         </InputWrapper>
         {!isLoading && phrase !== '' && products.length === 0 && (
-          <h2>No products found for query "{phrase}".</h2>
+          <h2>No products found for query '{phrase}'.</h2>
         )}
         {isLoading && (
           <Spinner fullwidth={1}/>
