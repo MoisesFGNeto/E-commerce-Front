@@ -54,11 +54,11 @@ export default function SeachPage(){
             autoFocus
             value={phrase}
             onChange={e=>setPhrase(e.target.value)} // explain me this line 
-            placeholder='Search for products...' 
+            placeholder="Search for products&hellip;" 
           />
         </InputWrapper>
         {!isLoading && phrase !== '' && products.length === 0 && (
-          <h2>No products found for query '{phrase}'.</h2>
+          <h2>No products found for query &ldquo;{phrase}&rdquo;.</h2>
         )}
         {isLoading && (
           <Spinner fullwidth={1}/>
