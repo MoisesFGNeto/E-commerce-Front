@@ -6,11 +6,10 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import WhiteBox from "@/components/WhiteBox";
 import {RevealWrapper} from "next-reveal";
 import Input from "@/components/Input";
-import {useContext, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
 import Spinner from "@/components/Spinner";
 import ProductBox from "@/components/ProductBox";
-import { set } from "lodash";
 
 const ColsWrapper = styled.div`
   display: grid;
@@ -19,6 +18,9 @@ const ColsWrapper = styled.div`
   margin: 40px 0;
   p{
     margin: 5px;
+  }
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
   }
 `;
 

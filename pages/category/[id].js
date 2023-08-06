@@ -83,7 +83,6 @@ useEffect(() => {
   }
   setLoadingProducts(true);
   const catIds = [category._id, ...(subCategories?.map(c => c._id) || [])];
-  console.log(catIds);
   const params = new URLSearchParams;
   params.set('categories', catIds.join(','));
   params.set('sort', sort);
@@ -93,7 +92,6 @@ useEffect(() => {
     }
   });
   const url = '/api/products?' + params.toString();
-  console.log(url);
   axios.get(url).then(res => {
     setProducts(res.data);
     setLoadingProducts(false);

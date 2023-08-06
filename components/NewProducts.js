@@ -9,7 +9,7 @@ const Title = styled.h2`
 `;
 
 export default function NewProducts({ products, wishedProducts}) {
-  console.log({wishedProducts});
+
   return (
     <Center>
       <Title>New Arrivals</Title>
