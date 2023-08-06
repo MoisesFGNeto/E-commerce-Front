@@ -38,12 +38,14 @@ const StyledNav = styled.nav.withConfig({
   position: fixed;
   top: 0;
   bottom: auto;
-  left: auto;
-  border-radius: 5px;
   right: 0;
-  padding: 70px 20px 20px;
+  padding: 70px 20px 10px;
+  text-align: right;
   background-color: #222;
   align-self: center;
+  @media screen and (max-width: 768px) {
+    width: 100vw;
+  }
   @media screen and (min-width: 768px) {
     display: flex;
     position: static;
@@ -65,7 +67,6 @@ const NavLink = styled(Link)`
   }
   &:hover{
     color:#fff;
-    background-color: #444;
   }
 `;
 const NavButton = styled.button`

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+
 const StyledFooter = styled.footer`
   background-color:#222;
   height: 45px;
@@ -21,7 +22,9 @@ export default function Footer() {
   return(
       <>
       <StyledFooter>
-        <RightsStyled>2023 Developed by Moisés. All rights reserved.</RightsStyled>
+        <RightsStyled>
+          2023 Developed by Moisés. All rights reserved.
+        </RightsStyled>
       </StyledFooter>
       </>
   )

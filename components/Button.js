@@ -10,6 +10,8 @@ display: inline-flex;
 align-items: center;
 text-decoration: none;
 font-family: 'Poppins', sans-serif;
+font-weight: 500;
+font-size: 15px;
 svg{
   height: 16px;
   margin-right: 5px;
@@ -36,7 +38,7 @@ ${props => props.black && props.outline && css`
   color: #000;
   border: 1px solid #000;
 `}
-${props => props && !props.outline && css `
+${props => props.primary && !props.outline && css `
 background-color: ${primary};
 border: 1px solid ${primary};
 color: #fff;
@@ -54,8 +56,10 @@ ${props => props.size === 'l' && css`
   }
 `}
 &:hover {
-  background-color: #fff;
+  background-color: #F5F5F5;
   color: ${primary};
+  border: 1px solid transparent;
+  box-shadow: 0px 0px 5px rgba(13, 61, 41, 0.7);
 }
 `;
 
@@ -63,8 +67,8 @@ const StyledButton = styled.button`
   ${ButtonStyle}
 `;
 
-export default function Button({children,block,black,...rest}) {
+export default function Button({children,...rest}) {
   return (
-    <StyledButton block={block ? "true" : undefined} black={black ? "true" : undefined}{...rest}>{children}</StyledButton>
+    <StyledButton {...rest}>{children}</StyledButton>
   );
 }

@@ -8,6 +8,8 @@ import axios from "axios";
 import Table from "@/components/Table";
 import Input from "@/components/Input";
 import Footer from "@/components/Footer";
+import {RevealWrapper} from "next-reveal";
+import { useSession } from "next-auth/react";
 
 const ColumnsWrapper = styled.div`
   display: grid;
@@ -33,9 +35,7 @@ const ColumnsWrapper = styled.div`
   }
 `;
 const PaddingBottom = styled.div`
-@media screen and (max-width: 768px) {
   padding-bottom : 80px; 
-}
 `;
 const Box = styled.div`
   background-color: #fff;
@@ -97,9 +97,9 @@ const CityHolder = styled.div`
   gap: 5px;
 `;
 
-
 export default function CartPage() {
   const {cartProducts,addProduct,removeProduct,clearCart} = useContext(CartContext);
+  const {data: session} = useSession();
   const [products,setProducts] = useState([]);
   const [name,setName] = useState('');
   const [email,setEmail] = useState('');
@@ -119,14 +119,28 @@ export default function CartPage() {
     }
   }, [cartProducts]);
   useEffect(() => {
-    if (typeof window === 'undefined') {
+    if (typeof window === 'undefined') { 
       return;
     }
     if (window?.location.href.includes('success')) {
       setIsSuccess(true);
       clearCart();
     }
+  
   }, []);
+  useEffect(() => {
+    if (!session) {
+      return;
+    }
+    axios.get('/api/address').then(response => {
+      setName(response.data.name);
+      setEmail(response.data.email);
+      setCity(response.data.city);
+      setPostalCode(response.data.postalCode);
+      setStreetAddress(response.data.streetAddress);
+      setCountry(response.data.country);
+    });
+  },[session]);
   function moreOfThisProduct(id) {
     addProduct(id);
   }
@@ -168,6 +182,7 @@ export default function CartPage() {
       <Header />
       <Center>
         <ColumnsWrapper>
+        <RevealWrapper delay={0}>
           <Box>
             <h2>Cart</h2>
             {!cartProducts?.length && (
@@ -194,6 +209,7 @@ export default function CartPage() {
                       <td>
                         <ButtonContainer>
                           <Button
+                            primary={1}
                             onClick={() => 
                             lessOfThisProduct(product._id)}>
                             -
@@ -202,8 +218,9 @@ export default function CartPage() {
                             {cartProducts.filter(id => id === product._id).length}
                           </QuantityLabel>
                           <Button
-                           onClick={() => 
-                           moreOfThisProduct(product._id)}>
+                            primary={1}
+                            onClick={() => 
+                            moreOfThisProduct(product._id)}>
                             +
                           </Button>
                         </ButtonContainer>                      
@@ -223,7 +240,9 @@ export default function CartPage() {
               </Table>
             )}
           </Box>
+          </RevealWrapper>
           {!!cartProducts?.length && ( 
+            <RevealWrapper delay={100}>
             <Box>
               <h2>Order information</h2>
               <Input type="text"
@@ -258,12 +277,13 @@ export default function CartPage() {
                      value={country}
                      name="country"
                      onChange={ev => setCountry(ev.target.value)}/>
-              <Button black 
-                      block
+              <Button black = {1}
+                      block = {1}
                       onClick={goToPayment}>
                 Continue to payment
               </Button>
             </Box>
+            </RevealWrapper>
           )}
         </ColumnsWrapper>
       </Center>
