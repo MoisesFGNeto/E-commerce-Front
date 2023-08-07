@@ -3,6 +3,7 @@ import {getServerSession} from "next-auth";
 import {authOptions} from "@/pages/api/auth/[...nextauth]";
 import { WishedProduct } from "@/models/WishedProduct";
 
+
 export default async function handle(req, res) {
   await mongooseConnect();
   const {user} = await getServerSession(req, res, authOptions);

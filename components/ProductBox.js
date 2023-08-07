@@ -1,11 +1,12 @@
 import styled from "styled-components"
 import Button from "@/components/Button";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "@/components/CartContext";
 import HeartOutlineIcon from "./icons/HeartOutlineIcon";
 import HeartSolidIcon from "./icons/HeartSolidIcon";
 import axios from "axios";
+import { useSession } from "next-auth/react";
 
 const ProductWrapper = styled.div`
  
@@ -92,6 +93,7 @@ const WishlistButton = styled.button`
 export default function ProductBox({
   _id,title,price,images,wished = false, onRemoveFromWishlist=()=>{},
 }) {
+  const {data: session} = useSession();
   const {addProduct} = useContext(CartContext);
   const url = '/product/'+_id;
   const [isWished, setIsWished] = useState(wished);
@@ -112,9 +114,11 @@ export default function ProductBox({
     <ProductWrapper>
       <WhiteBox href={url}>
         <div>
+          {session && (
           <WishlistButton wished={isWished} onClick={addToWishList}>
             {isWished ? <HeartSolidIcon/> : <HeartOutlineIcon/>}
           </WishlistButton>
+          )}
           <img src={images?.[0]} alt=""/>
         </div>
       </WhiteBox>

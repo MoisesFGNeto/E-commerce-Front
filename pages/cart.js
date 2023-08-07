@@ -132,15 +132,27 @@ export default function CartPage() {
     if (!session) {
       return;
     }
-    axios.get('/api/address').then(response => {
-      setName(response.data.name);
-      setEmail(response.data.email);
-      setCity(response.data.city);
-      setPostalCode(response.data.postalCode);
-      setStreetAddress(response.data.streetAddress);
-      setCountry(response.data.country);
-    });
-  },[session]);
+    axios.get('/api/address')
+      .then(response => {
+        const address = response.data || {
+          name: '',
+          email: '',
+          city: '',
+          postalCode: '',
+          streetAddress: '',
+          country: ''
+        };
+        setName(address.name);
+        setEmail(address.email);
+        setCity(address.city);
+        setPostalCode(address.postalCode);
+        setStreetAddress(address.streetAddress);
+        setCountry(address.country);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, [session]);
   function moreOfThisProduct(id) {
     addProduct(id);
   }

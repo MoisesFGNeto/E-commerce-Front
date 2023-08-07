@@ -1,12 +1,15 @@
 import Header from "@/components/Header";
 import Center from "@/components/Center";
+import ProductsGrid from "@/components/ProductsGrid";
+import Spinner from "@/components/Spinner";
+import styled from "styled-components";
 import { Category } from "@/models/Category";
 import { Product } from "@/models/Product";
-import ProductsGrid from "@/components/ProductsGrid";
-import styled from "styled-components";
+import { WishedProduct } from "@/models/WishedProduct";
 import { useEffect, useState } from "react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]";
 import axios from "axios";
-import Spinner from "@/components/Spinner";
 
 const CategoryHeader = styled.div`
   display: flex;
@@ -58,7 +61,7 @@ const Filter = styled.div`
 `;
 
 export default function CategoryPage({
-  category, subCategories, products:originalProducts
+  category, subCategories, products:originalProducts, wishedProducts
 }) {
   const defaultSorting = '_id-desc';
   const defaultFilterValues = category.properties.
@@ -139,7 +142,7 @@ useEffect(() => {
         {!loadingProducts && (
           <div>
             {products.length > 0 && (
-              <ProductsGrid products={products} />
+              <ProductsGrid products={products} wishedProducts={wishedProducts} />
             )}
             {products.length === 0 && (
               <div>Sorry, no products found.</div>
@@ -152,15 +155,23 @@ useEffect(() => {
 }
 
 export async function getServerSideProps(context) {
+  const session = await getServerSession(context.req, context.res, authOptions);
   const category = await Category.findById(context.query.id);
   const subCategories = await Category.find({parent: category._id});
   const catIds = [category._id, ...subCategories.map(c => c._id)];
   const products = await Product.find({category: catIds});
+  const wishedProducts = session?.user
+  ? await WishedProduct.find({
+    userEmail:session?.user.email,
+    product: products.map(p => p._id.toString()),
+})
+  : [];
   return{
     props: {
         category: JSON.parse(JSON.stringify(category)),
         subCategories: JSON.parse(JSON.stringify(subCategories)),
         products: JSON.parse(JSON.stringify(products)),
+        wishedProducts: wishedProducts.map(i => i.product.toString()),
     }
   };
 }
