@@ -12,9 +12,7 @@ import Spinner from "@/components/Spinner";
 import ProductBox from "@/components/ProductBox";
 import Tabs from "@/components/Tabs";
 import SingleOrder from "@/components/SingleOrder";
-import { ToastContainer } from 'react-toastify';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import {withSwal} from "react-sweetalert2";
 
 const ColsWrapper = styled.div`
   display: grid;
@@ -40,14 +38,7 @@ const WishedProductsGrid = styled.div`
   gap: 30px;
 `;
 
-const StyledToastContainer = styled(ToastContainer)`
-  .Toastify__toast {
-    background-color: #eee; 
-    color: black; 
-  }
-`;
-
-export default function AccountPage() {
+function AccountPage({swal}) {
   const {data: session} = useSession();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -73,7 +64,10 @@ export default function AccountPage() {
   function saveAddress() {
     const data = {name,email,city,postalCode,streetAddress,country};
     axios.put('/api/address', data).then(() => {
-      toast.success('Address saved!');
+      swal.fire({
+        title: 'Address updated',
+        icon: 'success',
+      });
     });
   }
 
@@ -119,7 +113,6 @@ export default function AccountPage() {
     <>
     <Header/>
     <Center>
-    <StyledToastContainer />
       <ColsWrapper>
         <div>
           <RevealWrapper delay={0}>
@@ -246,3 +239,7 @@ export default function AccountPage() {
     </>
   )
 }
+
+export default withSwal (({swal}) => (
+  <AccountPage swal={swal}/>
+));

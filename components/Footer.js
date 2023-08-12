@@ -16,6 +16,12 @@ const RightsStyled = styled.p`
   color: #aaa;
   font-size: 12px;
   font-weight: 300;
+  @media (max-width: 768px) {
+    font-size: 0.6em;
+  }
+  @media (max-width: 300px) {
+    font-size: 0.4em;
+  }
   `;
 
 export default function Footer() {

@@ -5,6 +5,7 @@ import ButtonLink from "@/components/ButtonLink";
 import CartIcon from "@/components/icons/CartIcon";
 import { useContext } from "react";
 import { CartContext } from "@/components/CartContext";
+import { RevealWrapper } from "next-reveal";
 
 const Bg = styled.div`
   background-color: #222;
@@ -36,10 +37,12 @@ const ColumnsWrapper = styled.div`
   }
   div:nth-child(1) {
     order: 2;
+    margin-left: auto;
+    margin-right: auto;
   }
   @media screen and (min-width: 768px) {
     grid-template-columns: 1.1fr 0.9fr;
-    div:nth-child(1) {
+    & > div:nth-child(1) {
       order: 0;
     }
     img {
@@ -51,11 +54,28 @@ const Column = styled.div`
   display: flex;
   align-items: center;
 `;
+
+const ImgColumn = styled(Column)`
+  & > div {
+    width: 100%;
+  }
+`;
+
 const ButtonsWrapper = styled.div`
   display: flex;
   gap: 10px;
   margin-top: 25px;
 `;
+const CenterImg = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+`;
+
+const ContentWrapper = styled.div`
+
+  `;
 
 export default function Featured({product}){
   const {addProduct} = useContext(CartContext)
@@ -68,20 +88,28 @@ export default function Featured({product}){
         <ColumnsWrapper>
           <Column>
             <div>
-              <Title>{product.title}</Title>
-              <Description>{product.description}</Description>
-              <ButtonsWrapper>
-                <ButtonLink href={'/product/'+product._id} outline={1} white={1}>Read more</ButtonLink>
-                <Button white={1} onClick={addFeaturedToCart}>
-                  <CartIcon/>
-                  Add to cart
-                </Button>
+              <RevealWrapper origin={'left'} delay={0}>
+                <ContentWrapper>
+                  <Title>{product.title}</Title>
+                  <Description>{product.description}</Description>
+                </ContentWrapper>
+                <ButtonsWrapper>
+                  <ButtonLink href={'/product/'+product._id} outline={1} white={1}>Read more</ButtonLink>
+                  <Button white={1} onClick={addFeaturedToCart}>
+                    <CartIcon/>
+                    Add to cart
+                  </Button>
               </ButtonsWrapper>
+              </RevealWrapper>
             </div>
           </Column>
-          <Column>
-            <img src="https://moises-next-ecommerce.s3.amazonaws.com/1688241995079.webp" alt="MacBook Pro"></img>
-          </Column>
+          <ImgColumn>
+            <RevealWrapper>
+              <CenterImg>
+               <img className={'main'} src={product.images?.[0]}></img>
+              </CenterImg>
+            </RevealWrapper>
+          </ImgColumn>
         </ColumnsWrapper>
       </Center>
     </Bg>

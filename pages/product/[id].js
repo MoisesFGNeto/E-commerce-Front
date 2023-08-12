@@ -5,20 +5,23 @@ import ProductImages from "@/components/ProductImages";
 import Title from "@/components/Title";
 import WhiteBox from "@/components/WhiteBox";
 import CartIcon from "@/components/icons/CartIcon";
+import ProductReviews from "@/components/ProductReviews";
 import { mongooseConnect } from "@/lib/mongoose";
 import {Product} from "@/models/Product";
 import styled from "styled-components";
 import { useContext } from "react";
 import { CartContext } from "@/components/CartContext";
-import Footer from "@/components/Footer";
 
 const ColWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 40px;
-  margin: 40px;
+  margin-top: 30px;
   @media screen and (min-width: 768px) {
     grid-template-columns: .8fr 1.2fr;;
+  }
+  @media screen and (max-width: 280px) {
+    margin-left: -10px;
   }
 `;
 
@@ -35,6 +38,7 @@ const Price = styled.span`
 const Padding = styled.div`
 @media screen and (max-width: 768px) {
   padding-bottom: 40px;
+  margin-top: -40px;
 }
 `;
 
@@ -65,8 +69,8 @@ export default function ProductPage({product}){
             </PriceRow>
           </Padding>
         </ColWrapper>
-      </Center>   
-      <Footer/>     
+        <ProductReviews product={product}/>
+      </Center>       
       </>
   )
 }

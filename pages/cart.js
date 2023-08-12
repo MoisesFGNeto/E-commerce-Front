@@ -19,32 +19,53 @@ const ColumnsWrapper = styled.div`
   }
   gap: 40px;
   margin-top: 40px;
+  margin-bottom: 40px;
   table thead tr th:nth-child(3),
   table tbody tr td:nth-child(3),
-  table tbody tr.subtotal td:nth-child(2){
+  table tbody tr.subtotal td:nth-child(2) {
     text-align: right;
   }
-  table tr.subtotal td{
+  table tr.subtotal td {
     padding: 15px 0;
+    font-size: 1.1em;
+    @media screen and (max-width: 280px) {
+      font-size: 0.8em;
   }
-  table tbody tr.subtotal td:nth-child(2){
-    font-size: 1.4rem;
+  table tr.coupon td:last-child {
+    font-size: 0.6em;
+    @media screen and (max-width: 280px) {
+      font-size: 0.6em;
   }
-  tr.total td{
-    font-weight: bold;
+  table tbody tr.subtotal td:nth-child(1) {
+    color: red;
+  }
+  table tbody tr.subtotal td:last-child {
+    font-size: 0.5em;
   }
 `;
 const PaddingBottom = styled.div`
-  padding-bottom : 80px; 
+  padding-bottom : 60px; 
 `;
 const Box = styled.div`
   background-color: #fff;
   border-radius: 10px;
   padding: 30px;
+  @media screen and (max-width: 280px) {
+    padding: 10px;
+    margin-left: -7px;
+    button{
+      font-size: 0.7em;
+    }
+  }
 `;
 
 const ProductInfoCell = styled.td`
   padding: 10px 0;
+  @media screen and (max-width: 280px) {
+    span{
+      font-size: 0.7em;
+    }
+  }
 `;
 
 const ProductImageBox = styled.div`
@@ -89,12 +110,24 @@ const ButtonContainer = styled.div`
   margin-left: 15px;
   @media screen and (min-width: 768px) {
     display: inline; 
+    margin-left: 0;
   }
 `;
 
 const CityHolder = styled.div`
   display:flex;
   gap: 5px;
+`;
+
+const StyledTableRow = styled.tr`
+  font-size: 0.8em;
+  @media screen and (max-width: 280px) {
+    font-size: 0.6em;
+  }
+  td{
+    padding: 20px 0;
+    color: #666;
+  }
 `;
 
 export default function CartPage() {
@@ -108,6 +141,7 @@ export default function CartPage() {
   const [streetAddress,setStreetAddress] = useState('');
   const [country,setCountry] = useState('');
   const [isSuccess,setIsSuccess] = useState(false);
+  const [shippingFee,setShippingFee] = useState(null);
   useEffect(() => {
     if (cartProducts.length > 0) {
       axios.post('/api/cart', {ids:cartProducts})
@@ -126,7 +160,9 @@ export default function CartPage() {
       setIsSuccess(true);
       clearCart();
     }
-  
+    axios.get('/api/settings?name=shippingFee').then(response => {
+      setShippingFee(response.data.value);
+    })
   }, []);
   useEffect(() => {
     if (!session) {
@@ -135,12 +171,12 @@ export default function CartPage() {
     axios.get('/api/address')
       .then(response => {
         const address = response.data || {
-          name: '',
-          email: '',
-          city: '',
-          postalCode: '',
-          streetAddress: '',
-          country: ''
+          name: "",
+          email: "",
+          city: "",
+          postalCode: "",
+          streetAddress: "",
+          country: "",
         };
         setName(address.name);
         setEmail(address.email);
@@ -168,12 +204,12 @@ export default function CartPage() {
       window.location = response.data.url;
     }
   }
-  let total = 0;
+  let productsTotal = 0;
   for (const productId of cartProducts) {
     const price = products.find(p => p._id === productId)?.price || 0;
-    total += price;
+    productsTotal += price;
   }
-
+  
   if (isSuccess) {
     return (
       <>
@@ -197,9 +233,7 @@ export default function CartPage() {
         <RevealWrapper delay={0}>
           <Box>
             <h2>Cart</h2>
-            {!cartProducts?.length && (
-              <div>Your cart is empty</div>
-            )}
+            {!cartProducts?.length && <div>Your cart is empty</div>}
             {products?.length > 0 && (
               <Table>
                 <thead>
@@ -216,14 +250,13 @@ export default function CartPage() {
                         <ProductImageBox>
                           <img src={product.images[0]} alt=""/>
                         </ProductImageBox>
-                        {product.title}
+                        <span>{product.title}</span>
                       </ProductInfoCell>
                       <td>
                         <ButtonContainer>
                           <Button
                             primary={1}
-                            onClick={() => 
-                            lessOfThisProduct(product._id)}>
+                            onClick={() => lessOfThisProduct(product._id)}>
                             -
                           </Button>
                           <QuantityLabel>
@@ -231,8 +264,7 @@ export default function CartPage() {
                           </QuantityLabel>
                           <Button
                             primary={1}
-                            onClick={() => 
-                            moreOfThisProduct(product._id)}>
+                            onClick={() => moreOfThisProduct(product._id)}>
                             +
                           </Button>
                         </ButtonContainer>                      
@@ -242,13 +274,24 @@ export default function CartPage() {
                       </td>
                     </tr>
                   ))}
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td>${total}</td>
+                  <tr className="subtotal">
+                    <td colSpan={2}>Products</td>
+                    <td>${productsTotal}</td>
                   </tr>
+                  <tr className="subtotal">
+                    <td colSpan={2}>Shipping</td>
+                    <td>${shippingFee}</td>
+                  </tr>
+                  <tr className="subtotal total">
+                    <td colSpan={2}>Total</td>
+                    <td>${Number(productsTotal) + Number(shippingFee)}</td>
+                  </tr>
+                  <StyledTableRow>
+                    <td colSpan={3}>Use our CODE: <strong>"10OFF"</strong> and get 10% off on the checkout page.</td>
+                  </StyledTableRow>
+                  
+                
                 </tbody>
-                <PaddingBottom/>
               </Table>
             )}
           </Box>
@@ -268,16 +311,16 @@ export default function CartPage() {
                      name="email"
                      onChange={ev => setEmail(ev.target.value)}/>
               <CityHolder>
-                <Input type="text"
-                       placeholder="City"
-                       value={city}
-                       name="city"
-                       onChange={ev => setCity(ev.target.value)}/>
-                <Input type="text"
-                       placeholder="Postal Code"
-                       value={postalCode}
-                       name="postalCode"
-                       onChange={ev => setPostalCode(ev.target.value)}/>
+              <Input type="text"
+                      placeholder="City"
+                      value={city}
+                      name="city"
+                      onChange={ev => setCity(ev.target.value)}/>
+              <Input type="text"
+                      placeholder="Postal Code"
+                      value={postalCode}
+                      name="postalCode"
+                      onChange={ev => setPostalCode(ev.target.value)}/>
               </CityHolder>
               <Input type="text"
                      placeholder="Street Address"
@@ -290,7 +333,6 @@ export default function CartPage() {
                      name="country"
                      onChange={ev => setCountry(ev.target.value)}/>
               <Button black = {1}
-                      block = {1}
                       onClick={goToPayment}>
                 Continue to payment
               </Button>

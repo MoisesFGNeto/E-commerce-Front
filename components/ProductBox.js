@@ -9,7 +9,7 @@ import axios from "axios";
 import { useSession } from "next-auth/react";
 
 const ProductWrapper = styled.div`
- 
+
 `;
 
 const WhiteBox = styled(Link)`
