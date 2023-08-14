@@ -49,7 +49,7 @@ const StyledLinkGit = styled(Link)`
   width: 100%;
   height: 100%;
   position: absolute; 
-  top: 3px;
+  top: 1px;
   left: 3px;
 `;
 const StyledLinkedin = styled(Link)`
@@ -57,7 +57,7 @@ const StyledLinkedin = styled(Link)`
   width: 100%;
   height: 100%;
   position: absolute; 
-  top: 3px;
+  top: 1px;
   left: 3.5px;
 `;
 
