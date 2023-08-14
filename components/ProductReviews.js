@@ -7,6 +7,9 @@ import Button from './Button';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Spinner from './Spinner';
+import { useSession } from "next-auth/react";
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const Title = styled.h2`
   font-size: 1.2rem;
@@ -56,6 +59,7 @@ const ReviewHeader = styled.div`
 `;
 
 export default function ProductReviews({product}) {
+  const {data: session} = useSession();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [stars, setStars] = useState(0);
@@ -63,6 +67,19 @@ export default function ProductReviews({product}) {
   const [reviewsLoading, setReviewsLoading] = useState(false);
   
   function submitReview(){
+    if (!session) {
+      toast.error('You must log in to make review!', {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        }); 
+      return;
+    }
     const data = {title,description,stars,product:product._id};
     axios.post('/api/reviews', data).then(res => {
       setTitle('');
@@ -84,7 +101,8 @@ export default function ProductReviews({product}) {
     });
   };
   return (
-    <div>   
+    <div>  
+      <ToastContainer/>
       <Title>Reviews</Title>
       <ColsWrapper>
         <div> 
@@ -135,7 +153,7 @@ export default function ProductReviews({product}) {
               </ReviewWrapper>
             ))}
           </WhiteBox>
-        </div>
+        </div>  
      </ColsWrapper>
     </div>
   );
