@@ -16,6 +16,9 @@ export function CartContextProvider({children}) {
     if (ls && ls.getItem('cart')) {
       setCartProducts(JSON.parse(ls.getItem('cart')));
     }
+    if (cartProducts.length === 0) {
+      clearCart();
+    }
   }, []);
 
   function addProduct(productId) {
