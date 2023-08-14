@@ -287,7 +287,7 @@ export default function CartPage() {
                     <td>${Number(productsTotal) + Number(shippingFee)}</td>
                   </tr>
                   <StyledTableRow>
-                    <td colSpan={3}>Use our CODE: <strong>"10OFF"</strong> and get 10% off on the checkout page.</td>
+                    <td colSpan={3}>Use our CODE: <strong>&quot;10OFF&quot;</strong> and get 10% off on the checkout page.</td>
                   </StyledTableRow>
                   
                 
