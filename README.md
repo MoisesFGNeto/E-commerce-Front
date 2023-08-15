@@ -1,7 +1,13 @@
-# E-commerce Frontend
-
 ## Description
 The E-commerce Frontend project is developed using cutting-edge technologies, including Next.js, Styled Components, MongoDB and Vercel for deployment.
+
+## Technologies Used
+
+<p align="start">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=react,nextjs,mongodb,vercel,github" />
+  </a>
+</p>
 
 ## Features
 ### User-Friendly Shopping
@@ -10,28 +16,27 @@ This web shop offers a user-friendly interface, allowing customers to easily bro
 
 ### Responsive Cart Management
 
-Customers can effortlessly add or remove products from their cart, making the shopping experience more convenient and enjoyable.
+Customers can effortlessly add or remove products from their cart.
 
 ### Integration with Admin Panel
 
-This frontend seamlessly communicates with the admin panel, streamlining the order management process. Each purchase made by users will be reflected in the admin panel's orders section.
+This frontend seamlessly communicates with admin-panel(repository), streamlining the order management process. User purchases are accurately reflected in the admin panel's orders section.
 
 ### Stripe Webhook
 
-The application utilizes a Stripe webhook to receive real-time updates about user payments. When a user completes a purchase, Stripe sends a webhook event to our backend server, bringing essential information about the payment, such as its status and details. This allows us to update the admin panel with the appropriate payment status, ensuring that all orders are accurately tracked and managed.
+Real-time payment updates are received through a Stripe webhook, ensuring precise tracking and management of orders.
 
 ## Additional Features
 
-1. **Product Search**: Easily find your desired product by searching for products using keywords such as the initial name, brand, etc.
+1. **Product Search**: Easily find desired products by searching using keywords like product names or brands, description.
 
-2. **Account Section**: Access your Wishlist and view the history of orders made.
-   Use this email and password to log in to the account page and gain access to your wishlist and previous orders.      
+2. **Account Section**: Manage your wishlist and order history. Gain easy access to your Wishlist and review your order history within the Account page. You can log in using your Google account or use the following credentials for testing:    
    email: myecommerceadm2023@gmail.com       
    pw : ecommerce_test
    
 4. **Sort Products**: Sort products by specific properties to help you find the perfect item quickly.
 
-5. **Product Reviews**: Evaluate products by viewing and submitting ratings and reviews.
+5. **Product Reviews**: Evaluate products by viewing and submitting ratings and reviews. You need to be logged in to be able to make reviews.
 
 ## Instructions for Payment Testing
 
@@ -45,4 +50,4 @@ Please note that this is a test environment, and no real transactions will occur
 
 **Caution: Do not use real payment information while testing. Use only the provided test card details to ensure a secure testing experience.**
 
-Click [here](https://e-commerce-front-2023.vercel.app/) to access the project.
+Click [here](https://e-commerce-front-2023.vercel.app/) to see the demo.
