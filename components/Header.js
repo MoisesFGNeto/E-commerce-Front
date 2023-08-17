@@ -59,6 +59,9 @@ const NavLink = styled(Link)`
   text-decoration:none;
   min-width: 30px;
   padding: 10px 0;
+  &:focus{
+    outline: none;
+  }
   svg{
     height: 20px;
   }
@@ -78,6 +81,9 @@ const NavButton = styled.button`
   cursor: pointer;
   position: relative;
   z-index: 3;
+  &:focus{
+    outline: none;
+  }
   @media screen and (min-width: 768px) {
     display: none;
   }
@@ -101,6 +107,7 @@ const SideIcons = styled.div`
 export default function Header() {
   const {cartProducts} = useContext(CartContext);
   const [mobileNavActive,setMobileNavActive] = useState(false);
+  
   return (
     <StyledHeader>
       <Center>

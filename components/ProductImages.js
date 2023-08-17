@@ -8,13 +8,13 @@ const Image = styled.img`
 
 const BigImage = styled.img`
 max-width: 100%;
-max-height: 200px;  
+max-height: 300px;  
 min-height: 200px;
 @media (max-width: 768px) {
-  max-height: 150px;
+  max-height: 250px;
   min-height: 150px;
-  max-width: 150px;
-  min-width: 150px;
+  max-width: 250px;
+  // min-width: 400px;
 }
 @media (max-width: 280px) {
   max-height: 80px;
