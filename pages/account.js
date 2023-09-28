@@ -40,9 +40,8 @@ const WishedProductsGrid = styled.div`
 
 const SpanCredentials = styled.div`
   margin-top: 25px;
-  font-size: 12px;
+  font-size: 10px;
   color: #999;
-  box-sizing: border-box;
 `;
 
 function AccountPage({swal}) {
