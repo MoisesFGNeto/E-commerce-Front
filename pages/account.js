@@ -38,6 +38,13 @@ const WishedProductsGrid = styled.div`
   gap: 30px;
 `;
 
+const SpanCredentials = styled.div`
+  margin-top: 25px;
+  font-size: 12px;
+  color: #999;
+  box-sizing: border-box;
+`;
+
 function AccountPage({swal}) {
   const {data: session} = useSession();
   const [name, setName] = useState('');
@@ -229,7 +236,17 @@ function AccountPage({swal}) {
                 <Button block={1} primary={1} onClick={logout}>Logout</Button>
               )}
               {!session && (
+                <>
                 <Button block={1}primary={1} onClick={login}>Login with Google</Button>
+                <SpanCredentials>
+                  <div>
+                    <span>email: myecommerceadm2023@gmail.com</span><br/>
+                    <span>password: ecommerce_test</span>
+                  </div>
+                </SpanCredentials>
+                
+                </>
+                
               )}
             </WhiteBox>
           </RevealWrapper>
