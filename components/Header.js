@@ -4,7 +4,7 @@ import Center from "@/components/Center";
 import {useState} from "react";
 import BarsIcon from "@/components/icons/Bars";
 import SearchIcon from "./icons/SearchIcon";
-import CartMaterialUI from "./CartMaterialUi";
+import CartMaterialUI from "./CartMaterialUI";
 
 const StyledHeader = styled.header`
   background-color: #222;
