@@ -59,7 +59,7 @@ ${props => props.size === 'l' && css`
   background-color: #F5F5F5;
   color: ${primary};
   border: 1px solid transparent;
-  box-shadow: 0px 0px 5px rgba(13, 61, 41, 0.7);
+  box-shadow: 0px 0px 2px rgba(13, 61, 41, 0.7);
 }
 `;
 

@@ -1,10 +1,10 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Center from "@/components/Center";
-import {useContext, useState} from "react";
-import {CartContext} from "@/components/CartContext";
+import {useState} from "react";
 import BarsIcon from "@/components/icons/Bars";
 import SearchIcon from "./icons/SearchIcon";
+import CartMaterialUI from "./CartMaterialUi";
 
 const StyledHeader = styled.header`
   background-color: #222;
@@ -56,14 +56,19 @@ const StyledNav = styled.nav.withConfig({
 const NavLink = styled(Link)`
   display: block;
   color:#aaa;
+  font-size: 1em;
   text-decoration:none;
   min-width: 30px;
   padding: 10px 0;
+  align-self: center;
   &:focus{
     outline: none;
   }
   svg{
-    height: 20px;
+    height: 23px;
+    &:hover{
+      color:#fff;
+    }
   }
   @media screen and (min-width: 768px) {
     padding:0;
@@ -97,15 +102,14 @@ const SideIcons = styled.div`
     min-width: 20px;
     color: #fff;
     svg{
-      width: 24px;
-      height: 24px;
+      width: 23px;
+      height: 23px;
       margin-top: 5px;
     }
   }
 `;
 
 export default function Header() {
-  const {cartProducts} = useContext(CartContext);
   const [mobileNavActive,setMobileNavActive] = useState(false);
   
   return (
@@ -118,7 +122,7 @@ export default function Header() {
             <NavLink href={'/products'}>All products</NavLink>
             <NavLink href={'/categories'}>Categories</NavLink>
             <NavLink href={'/account'}>Account</NavLink>
-            <NavLink href={'/cart'}>Cart ({cartProducts.length})</NavLink>
+            <NavLink href={'/cart'}><CartMaterialUI/></NavLink>
           </StyledNav>
           <SideIcons>
             <Link href={'/search'}><SearchIcon /></Link>

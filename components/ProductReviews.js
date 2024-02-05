@@ -69,7 +69,7 @@ export default function ProductReviews({product}) {
   function submitReview(){
     if (!session) {
       toast.error('You must log in to make review!', {
-        position: "bottom-center",
+        position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
