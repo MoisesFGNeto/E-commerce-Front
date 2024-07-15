@@ -53,7 +53,7 @@ export default function SeachPage(){
           <SearchInput 
             autoFocus
             value={phrase}
-            onChange={e=>setPhrase(e.target.value)} // explain me this line 
+            onChange={e=>setPhrase(e.target.value)} 
             placeholder="Search for products&hellip;" 
           />
         </InputWrapper>

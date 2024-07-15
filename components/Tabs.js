@@ -11,7 +11,7 @@ const StyledTab = styled.span`
   cursor: pointer;
   ${props => props.active ? `
   color: black;
-  border-bottom: 2px solid black;
+  border-bottom: ${props => props.active === "true" ? "2px solid black" : "none"};
   ` : `
   color: #aaa;
   `}

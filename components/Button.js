@@ -48,20 +48,22 @@ background-color: transparent;
 border: 1px solid ${primary};
 color: ${primary};
 `}
-${props => props.size === 'l' && css`
+${props => props.size === 'l' && css `
   font-size: 1.2rem;
   padding: 10px 20px;
   svg{
     height: 20px;
   }
 `}
-&:hover {
+${props => props.margintop && css `
+  margin-top: ${props.margintop};
+`}
+&:hover { 
   background-color: #F5F5F5;
   color: ${primary};
   border: 1px solid transparent;
   box-shadow: 0px 0px 2px rgba(13, 61, 41, 0.7);
-}
-`;
+}`
 
 const StyledButton = styled.button`
   ${ButtonStyle}
