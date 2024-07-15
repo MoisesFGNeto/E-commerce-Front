@@ -30,9 +30,7 @@ Real-time payment updates are received through a Stripe webhook, ensuring precis
 
 1. **Product Search**: Easily find desired products by searching using keywords like product names or brands, description.
 
-2. **Account Section**: Manage your wishlist and order history. Gain easy access to your Wishlist and review your order history within the Account page. You can log in using your Google account or use the following credentials for testing:    
-   email: myecommerceadm2023@gmail.com       
-   pw : ecommerce_test
+2. **Account Section**: Manage your wishlist and order history. Gain easy access to your Wishlist and review your order history within the Account page. You can log in with Google or email and password.
    
 4. **Sort Products**: Sort products by specific properties to help you find the perfect item quickly.
 
